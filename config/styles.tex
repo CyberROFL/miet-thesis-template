@@ -1,0 +1,87 @@
+% *
+% Ilnaz Nizametdinov, National Research University "MIET"
+% *
+
+% Page edges
+\geometry{a4paper,top=2cm,bottom=2cm,left=3cm,right=1cm}
+
+% 1.5 line spacing
+\onehalfspacing
+
+% Bibliography matches to GOST
+\makeatletter
+    \bibliographystyle{config/gost/bibliography}
+    \renewcommand{\@biblabel}[1]{#1.}
+\makeatother
+
+% Roman numbers in text
+\makeatletter
+    \newcommand{\Romannumeral}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+% Left-aligned text in equations
+\makeatletter
+    \newif\if@gather@prefix
+    \preto\place@tag@gather{
+        \if@gather@prefix\iftagsleft@
+            \kern-\gdisplaywidth@
+            \rlap{\gather@prefix}
+            \kern\gdisplaywidth@
+        \fi\fi
+    }
+    \appto\place@tag@gather{
+        \if@gather@prefix\iftagsleft@\else
+            \kern-\displaywidth
+            \rlap{\gather@prefix}
+            \kern\displaywidth
+        \fi\fi
+        \global\@gather@prefixfalse
+    }
+    \preto\place@tag{
+        \if@gather@prefix\iftagsleft@
+            \kern-\gdisplaywidth@
+            \rlap{\gather@prefix}
+            \kern\displaywidth@
+        \fi\fi
+    }
+    \appto\place@tag{
+        \if@gather@prefix\iftagsleft@\else
+            \kern-\displaywidth
+            \rlap{\gather@prefix}
+            \kern\displaywidth
+        \fi\fi
+        \global\@gather@prefixfalse
+    }
+    \newcommand*{\beforetext}[1]{
+        \ifmeasuring@\else
+            \gdef\gather@prefix{#1}
+            \global\@gather@prefixtrue
+        \fi
+    }
+\makeatother
+
+% Title & caption setup
+\titleformat{\chapter}[hang]{\normalfont\Large\bfseries\raggedright}{\thechapter}{20pt}{}
+\titleformat{\section}[hang]{\normalfont\large\bfseries\raggedright}{\thesection}{20pt}{}
+\titleformat{\subsection}[hang]{\normalfont\bfseries\raggedright}{\thesubsection}{20pt}{}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+% Centered figure caption
+\captionsetup[figure]{justification=centering,labelsep=period}
+% Right aligned table caption matches to GOST
+\DeclareCaptionFormat{gosttable}{\raggedleft#1#2\centering#3\par}
+\captionsetup[table]{format=gosttable,labelsep=newline,singlelinecheck=off}
+
+% Align table cell content vertically & horizontally center
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Images path
+\graphicspath{{content/images/}}
+
+% Unnumbered item labels
+\renewcommand{\labelitemi}{$-$}
+\renewcommand{\labelitemii}{$-$}
+
+% Eliminate space before/after lists
+\setlist{nolistsep}

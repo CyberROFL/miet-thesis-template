@@ -1,0 +1,51 @@
+% *
+% Ilnaz Nizametdinov, National Research University "MIET"
+% *
+
+% Title page related names
+% City
+\newcommand{\city}{Москва}
+% University
+\newcommand{\universitystatus}{Федеральное государственное автономное образовательное учреждение высшего профессионального образования}
+\newcommand{\university}{Национальный исследовательский университет <<МИЭТ>>}
+% Faculty
+\newcommand{\faculty}{Название факультета}
+% Full name of chair
+\newcommand{\fullchair}{Название кафедры}
+% Short chair name
+\newcommand{\chair}{кафедра}
+% Chairman
+\newcommand{\chairman}{И.О.Фамилия}
+% Digit code of the course
+\newcommand{\coursecode}{XXXXXX YY}
+% Name of the course
+\newcommand{\coursename}{Название курса}
+% Subject of work
+\newcommand{\subject}{Тема работы}
+% Keywords
+\newcommand{\keywords}{Список, ключевых, слов, через, запятую}
+% Undergraduate's full name
+\newcommand{\undergraduate}{И.О.Фамилия}
+% Supervisor's full name
+\newcommand{\supervisor}{И.О.Фамилия}
+
+% Introdution
+\newcommand{\intro}{Введение}
+
+% Conclusion
+\newcommand{\outro}{Заключение}
+
+% Renews
+\AtBeginDocument{
+    % Abstract
+    \renewcommand{\abstract}{Реферат}
+    % Table of contents
+    \renewcommand{\contentsname}{Содержание}
+    % List of figures
+    \renewcommand{\listfigurename}{Список рисунков}
+    % List of tables
+    \renewcommand{\listtablename}{Список таблиц}
+    % Bibliography
+    \newcommand{\biblname}{Список использованных источников}
+    \renewcommand{\bibname}{\biblname}
+}

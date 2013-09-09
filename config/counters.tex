@@ -1,0 +1,29 @@
+% *
+% Ilnaz Nizametdinov, National Research University "MIET"
+% *
+
+\newcounter{figures}
+\newcounter{tables}
+\newcounter{references}
+
+\providecommand\totalfigures{} 
+\providecommand\totaltables{}
+\providecommand\totalreferences{}
+
+\makeatletter
+    \AtEndDocument{
+        \addtocounter{figures}{\value{figure}}
+        \addtocounter{tables}{\value{table}}
+        \immediate\write\@mainaux{
+            \string\gdef\string\totalfigures{\number\value{figures}}
+            \string\gdef\string\totaltables{\number\value{tables}}
+            \string\gdef\string\totalreferences{\number\value{references}}
+        }
+    }
+
+    \setcounter{references}{-1}
+    \renewcommand{\@biblabel}[1]{\stepcounter{references}#1.}
+\makeatother
+
+\pretocmd{\chapter}{\addtocounter{figures}{\value{figure}}\setcounter{figure}{0}}{}{}
+\pretocmd{\chapter}{\addtocounter{tables}{\value{table}}\setcounter{table}{0}}{}{}
